@@ -1,0 +1,20 @@
+[user]
+	name = Ben Mendis
+	email = ben.mendis@gmail.com
+[color]
+	ui = auto
+[alias]
+	up = svn rebase
+	ci = svn dcommit
+	co = svn clone --prefix=svn/
+	oneline = log --oneline
+	patch = diff --no-prefix
+[github]
+	user = Sitwon
+	token = <removed>
+[clean]
+	requireForce = false
+[push]
+	default = upstream
+[core]
+	excludesfile = /home/adam/.gitignore_global

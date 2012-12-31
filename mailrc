@@ -1,0 +1,11 @@
+set smtp-use-starttls
+set ssl-verify=strict
+set ssl-ca-file=/usr/share/curl/ca-bundle.crt
+set smtp=smtp://smtp.gmail.com:587
+set smtp-auth=login
+set smtp-auth-user=dragonwisard@gmail.com
+set smtp-auth-password=<removed>
+set from="dragonwisard@gmail.com (Ben Mendis)"
+set folder=imaps://dragonwisard@gmail.com@imap.gmail.com
+set password-dragonwisard@gmail.com@imap.gmail.com=<removed>
+
