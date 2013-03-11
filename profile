@@ -32,13 +32,13 @@ export CLASSPATH=${CLASSPATH:-"."}
 # Adds "~/.bin" to the beginning of my $PATH. I use it for short utility
 # scripts, binaries I don't want to install globally, and wrapper scripts that I
 # to override the default binary. Using aliases is a valid alternative.
-export PATH=/home/adam/.bin:$PATH
+export PATH=$HOME/.bin:$PATH
 
 # Enable some bash-completion for git I found on Github
-source /home/adam/.git-completion.bash
+source $HOME/.git-completion.bash
 
 # Re-writes the prompt with the current git branch
-export PS1='\u@\h:\w`git branch 2> /dev/null | sed -f /home/adam/.parse_git_branch.sed`\$ '
+export PS1='\u@\h:\w`git branch 2> /dev/null | sed -f $HOME/.parse_git_branch.sed`\$ '
 
 # Putting Android SDK in the path
 export PATH=$PATH:~/src/phone/android-sdk-linux/tools:~/src/phone/android-sdk-linux/platform-tools
