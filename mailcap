@@ -1,0 +1,6 @@
+# HTML
+text/html; google-chrome %s
+text/html; pandoc -f html -t markdown; copiousoutput
+
+# Images
+image/*; feh %s
