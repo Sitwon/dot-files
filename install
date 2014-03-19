@@ -51,7 +51,7 @@ fill_template() {
 	cp "${src}" "${dst}"
 	(
 		set -f
-		while read line
+		while read -r line
 		do
 			if grep -q '.*!$.*' <<<${line}; then
 				for key in ${!replace[@]}; do
