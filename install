@@ -1,0 +1,65 @@
+#!/bin/bash
+
+pushd $(dirname "$0") >/dev/null 2>&1
+
+. private.bash
+
+blacklist_filter() {
+	GLOBIGNORE_BAK="${GLOBIGNORE}"
+	GLOBIGNORE='*'
+	while [ $# -gt 0 ]; do
+		SKIP=0
+		if [ "$1" = "install" \
+			-o "$1" = "config_daemon" \
+			-o "$1" = "private.bash" \
+			]; then
+			shift
+			continue
+		fi
+		for filter in ${blacklist[@]}; do
+			if [[ $1 == ${filter} ]]; then
+				SKIP=1
+				break
+			fi
+		done
+		[ $SKIP = 0 ] && echo $1
+		shift
+	done
+	GLOBIGNORE="${GLOBIGNORE_BAK}"
+}
+
+flip_dot() {
+	if [ "$1" = "." ]; then
+		return
+	fi
+	filedir="$(dirname "$1")"
+	filebase="$(basename "$1")"
+	if [ "${filebase: -1}" = "." ]; then
+		echo "$(flip_dot "${filedir}")/.${filebase:0:-1}"
+	else
+		echo "$(flip_dot "${filedir}")/${filebase}"
+	fi
+}
+
+
+folders="$(blacklist_filter $(find * -type d))"
+for folder in ${folders}; do
+	target_folder="${HOME}$(flip_dot "${folder}")"
+	echo "dir: ${target_folder}"
+	#mkdir -p "${target_folder}"
+done
+
+files="$(blacklist_filter $(find * -not -type d -not -iname '*.tmpl'))"
+for file in ${files}; do
+	target_file="${HOME}$(flip_dot "${file}")"
+	echo "link: ${target_file} => ${file}"
+	#ln -s "$(pwd)/${file}" "${target_file}"
+done
+
+templates="$(blacklist_filter $(find * -iname '*.tmpl'))"
+for template in ${templates}; do
+	target_file="${HOME}$(flip_dot "${template:0:-5}")"
+	echo "template: ${target_file}"
+done
+
+popd >/dev/null 2>&1
