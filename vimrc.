@@ -1,3 +1,13 @@
+" Set the textwidth to 80
+"set tw=80
+
+" Set add to the format options,
+" t: auto-wrap text
+" c: auto-wrap comments
+" q: allow formatting of comments
+" l: don't break existing long-lines
+"set fo+=tcql
+
 " Show whitespace (essential for working in Python!)
 set list listchars=tab:>-,trail:-
 
@@ -21,7 +31,7 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR><Space>
 set rtp+=$GOROOT/misc/vim
 
 " Git-specifc vim configs
-set rtp+=~/src/system/vim-git
+set rtp+=~/src/vim-git
 
 " Execute .vimrc configs in the current directory
 set exrc

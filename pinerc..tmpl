@@ -13,20 +13,20 @@
 # Lines beginning with "#" are comments, and ignored by Alpine.
 
 # Over-rides your full name from Unix password file. Required for PC-Alpine.
-personal-name=Ben Mendis
+personal-name=!$mail.name
 
 # Sets domain part of From: and local addresses in outgoing mail.
 user-domain=gmail.com
 
 # List of SMTP servers for sending mail. If blank: Unix Alpine uses sendmail.
-smtp-server=smtp.gmail.com:587/tls/user=dragonwisard@gmail.com
+smtp-server=!$mail.smtp:587/tls/user=!$mail.user
 
 # NNTP server for posting news. Also sets news-collections for news reading.
 nntp-server=
 
 # Path of (local or remote) INBOX, e.g. ={mail.somewhere.edu}inbox
 # Normal Unix default is the local INBOX (usually /usr/spool/mail/$USER).
-inbox-path={imap.gmail.com/ssl/user=dragonwisard@gmail.com}INBOX
+inbox-path={!$mail.imap/ssl/user=!$mail.user}INBOX
 
 # List of folder pairs; the first indicates a folder to archive, and the
 # second indicates the folder read messages in the first should
