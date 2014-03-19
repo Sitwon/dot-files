@@ -47,16 +47,20 @@ fill_template() {
 	src="$1"
 	dst="$2"
 	tmp="${dst}.tmp"
+	rm -f "${dst}" "${tmp}"
 	cp "${src}" "${dst}"
-	while read line
-	do
-		if [[ ${line} =~ .*'!$'.* ]]; then
-			for key in ${!replace[@]}; do
-				line=${line/'!$'$key/${replace[$key]}}
-			done
-		fi
-		echo ${line}
-	done <"${src}" >"${tmp}"
+	(
+		set -f
+		while read line
+		do
+			if grep -q '.*!$.*' <<<${line}; then
+				for key in ${!replace[@]}; do
+					line=${line/'!$'$key/${replace[$key]}}
+				done
+			fi
+			echo ${line}
+		done <"${src}" >"${tmp}"
+	)
 	cat "${tmp}" > "${dst}"
 	rm -f "${tmp}"
 }
@@ -72,14 +76,14 @@ files="$(blacklist_filter $(find * -not -type d -not -iname '*.tmpl'))"
 for file in ${files}; do
 	target_file="${HOME}$(flip_dot "${file}")"
 	echo "link: ${target_file} => ${file}"
-	ln -s "$(pwd)/${file}" "${target_file}"
+	ln -sf "$(pwd)/${file}" "${target_file}"
 done
 
 templates="$(blacklist_filter $(find * -iname '*.tmpl'))"
 for template in ${templates}; do
 	target_file="${HOME}$(flip_dot "${template:0:-5}")"
 	echo "template: ${target_file}"
-	fill_template "${template}" "${target_file}.tmp"
+	fill_template "${template}" "${target_file}"
 done
 
 popd >/dev/null 2>&1
