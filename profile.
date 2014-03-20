@@ -1,5 +1,7 @@
 # ~/.bashrc is a symlink to this file
 
+[ -e ~/.profile.local ] && . ~/.profile.local
+
 # Makes 'less' work nicely (especially with git)
 export LESS="-FRSX"
 
@@ -15,6 +17,8 @@ export LANG="en_US.UTF-8"
 # Required for applications that use XDG local directories
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
+
+export GWT_EXTERNAL_BROWSER="firefox"
 
 # Set vim as the default visual editor
 export VISUAL="vim"
@@ -38,8 +42,16 @@ export PATH=$HOME/.bin:$PATH
 source $HOME/.git-completion.bash
 
 # Re-writes the prompt with the current git branch
-export PS1='\u@\h:\w`git branch 2> /dev/null | sed -f $HOME/.parse_git_branch.sed`\$ '
+source ~/.git-prompt.sh
+source ~/.git-completion.bash
+export PS1='\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null)\$ '
+#export PS1='\u@\h:\w`git branch 2> /dev/null | sed -f $HOME/.parse_git_branch.sed`\$ '
+
+alias display="display -geometry 1390x1015+2+2"
 
 # Putting Android SDK in the path
 export PATH=$PATH:~/src/phone/android-sdk-linux/tools:~/src/phone/android-sdk-linux/platform-tools
 
+#. /etc/profile.d/nix.sh
+
+PATH="/usr/local/heroku/bin:$PATH"
