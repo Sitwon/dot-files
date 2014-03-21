@@ -20,6 +20,7 @@ considered template files and contain tokens which are replaced with private
 or site-specific strings at install-time.
 
 Example private.bash:
+
 	#!/bin/bash
 	
 	# List of files or patterns for files you don't wish to be installed
