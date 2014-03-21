@@ -14,6 +14,7 @@ blacklist_filter() {
 		if [ "$1" = "install" \
 			-o "$1" = "config_daemon" \
 			-o "$1" = "private.bash" \
+			-o "$1" = "README.md" \
 			]; then
 			shift
 			continue
