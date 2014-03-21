@@ -21,24 +21,26 @@ or site-specific strings at install-time.
 
 Example private.bash:
 
-	#!/bin/bash
-	
-	# List of files or patterns for files you don't wish to be installed
-	# or updated.
-	blacklist=(
-		'ignoreme'
-	  )
-	
-	# List of replacements for template files.
-	# Occurrences of !$<key> in the template file will be replaced with the
-	# corresponding value from this associative array.
-	declare -A replace
-	replace=(
-		[mail.user]="email address"
-		[mail.passwd]="password"
-		[mail.name]="your name"
-		[mail.imap]="imap.gmail.com"
-		[mail.smtp]="smtp.gmail.com"
-		[github.user]="username"
-		[github.token]="token"
-	  )
+```bash
+#!/bin/bash
+
+# List of files or patterns for files you don't wish to be installed
+# or updated.
+blacklist=(
+	'ignoreme'
+  )
+
+# List of replacements for template files.
+# Occurrences of !$<key> in the template file will be replaced with the
+# corresponding value from this associative array.
+declare -A replace
+replace=(
+	[mail.user]="email address"
+	[mail.passwd]="password"
+	[mail.name]="your name"
+	[mail.imap]="imap.gmail.com"
+	[mail.smtp]="smtp.gmail.com"
+	[github.user]="username"
+	[github.token]="token"
+  )
+```
