@@ -54,4 +54,6 @@ export PATH=$PATH:~/src/phone/android-sdk-linux/tools:~/src/phone/android-sdk-li
 
 #. /etc/profile.d/nix.sh
 
-PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
