@@ -6,9 +6,9 @@
 [alias]
 	up = svn rebase
 	ci = svn dcommit
-	co = svn clone --prefix=svn/
+	co = svn clone --preserve-empty-dirs --prefix=svn/
 	oneline = log --oneline
-	patch = diff --no-prefix --binary
+	patch = diff --no-prefix --binary --full-index --relative
 [github]
 	user = !$github.user
 	token = !$github.token
