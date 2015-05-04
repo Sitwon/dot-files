@@ -44,8 +44,29 @@ source $HOME/.git-completion.bash
 # Re-writes the prompt with the current git branch
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
+
 export PS1='\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null)\$ '
 #export PS1='\u@\h:\w`git branch 2> /dev/null | sed -f $HOME/.parse_git_branch.sed`\$ '
+
+get_exit_status(){
+        local ES=$?
+        local GREEN=$'\033[1;32m'
+        local RED=$'\033[1;31m'
+        local NONE=$'\033[m'
+        if [ ${ES} -eq 0 ]; then
+                echo -n "${GREEN}"
+        else
+                echo -n "${RED}"
+        fi
+        echo "${ES}${NONE}"
+}
+
+__prompt_command() {
+        #PS1="[\[\033[00m\]\u@\h\[\033[01;34m\] \W\[\033[31m\]\$(parse_git_branch
+        PS1='\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null) $(get_exit_status)\$ '
+}
+
+export PROMPT_COMMAND=__prompt_command
 
 alias display="display -geometry 1390x1015+2+2"
 
