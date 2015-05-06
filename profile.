@@ -50,9 +50,9 @@ export PS1='\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null)\$ '
 
 get_exit_status(){
         local ES=$?
-        local GREEN=$'\033[1;32m'
-        local RED=$'\033[1;31m'
-        local NONE=$'\033[m'
+        local GREEN=$'\[\033[1;32m\]'
+        local RED=$'\[\033[1;31m\]'
+        local NONE=$'\[\033[m\]'
         if [ ${ES} -eq 0 ]; then
                 echo -n "${GREEN}"
         else
