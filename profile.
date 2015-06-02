@@ -63,7 +63,7 @@ get_exit_status(){
 
 __prompt_command() {
         #PS1="[\[\033[00m\]\u@\h\[\033[01;34m\] \W\[\033[31m\]\$(parse_git_branch
-        PS1='\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null) $(get_exit_status)\$ '
+        PS1="\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null) $(get_exit_status) \$ "
 }
 
 export PROMPT_COMMAND=__prompt_command
