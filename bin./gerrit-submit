@@ -1,0 +1,13 @@
+#!/bin/bash
+
+submit_to_gerrit(){
+	local branch="${1:-$(git rev-parse --abbrev-ref HEAD)}"
+
+	( set -x
+		git push origin HEAD:refs/for/"${branch}"
+	)
+}
+
+if [ "${BASH_SOURCE}" = "${0}" ]; then
+	submit_to_gerrit "${@}"
+fi

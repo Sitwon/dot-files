@@ -9,6 +9,9 @@
 	co = svn clone --preserve-empty-dirs --prefix=svn/
 	oneline = log --oneline
 	patch = diff --no-prefix --binary --full-index --relative
+	submit = !gerrit-submit
+	draft = !gerrit-draft
+	squash = !gerrit-squash
 [github]
 	user = !$github.user
 	token = !$github.token

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+squash_commits(){
+	local branch="${1:-master}"
+	shift
+	local ancestor="$(git merge-base "${branch}" HEAD)"
+	local old_head="$(git rev-parse "${branch}")"
+
+	git checkout -b temp \
+		&& git reset --soft "${ancestor}" \
+		&& git commit -c "${old_head}" "${@}" \
+		&& git checkout "${branch}" \
+		&& git reset --hard "${ancestor}" \
+		&& git merge temp \
+		&& git branch -D temp
+}
+
+if [ "${BASH_SOURCE}" = "${0}" ]; then
+	squash_commits "${@}"
+fi
