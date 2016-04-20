@@ -1,0 +1,20 @@
+#!/bin/bash
+
+reset_to_gerrit_change(){
+	#local branch="${1:-$(git rev-parse --abbrev-ref HEAD)}"
+	local change="${1}"
+	local patch="${2:-1}"
+
+	( set -x
+		#git push origin HEAD:refs/for/"${branch}"
+		git fetch ssh://bmendis@gerrit1.cpd.novetta.com:29418/nca refs/changes/"${change: -2}"/"${change}"/"${patch}" && git reset --hard FETCH_HEAD
+	)
+}
+
+if [ "${BASH_SOURCE}" = "${0}" ]; then
+	if [ "${#}" -le "1" ]; then
+		echo "Usage: ${0} <change number> <patch set>"
+		exit 1
+	fi
+	reset_to_gerrit_change "${@}"
+fi
