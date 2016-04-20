@@ -64,6 +64,7 @@ __prompt_command() {
 export PROMPT_COMMAND=__prompt_command
 
 alias display="display -geometry 1390x1015+2+2"
+alias ccat="pygmentize -g"
 
 # Putting Android SDK in the path
 export PATH=$PATH:~/src/phone/android-sdk-linux/tools:~/src/phone/android-sdk-linux/platform-tools
