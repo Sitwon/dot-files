@@ -12,8 +12,8 @@ reset_to_gerrit_change(){
 }
 
 if [ "${BASH_SOURCE}" = "${0}" ]; then
-	if [ "${#}" -le "1" ]; then
-		echo "Usage: ${0} <change number> <patch set>"
+	if [ "${#}" -lt "1" ]; then
+		echo "Usage: ${0} <change number> [patch set]"
 		exit 1
 	fi
 	reset_to_gerrit_change "${@}"
