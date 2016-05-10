@@ -38,30 +38,33 @@ source $HOME/.git-completion.bash
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
 
-export PS1='\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null)\$ '
-#export PS1='\u@\h:\w`git branch 2> /dev/null | sed -f $HOME/.parse_git_branch.sed`\$ '
+export PS1='\u@\h:\w $(_branch_and_exit_status)\! \[\033[1;32m\]$(_good_status)\[\033[1;31m\]$(_bad_status)\[\033[m\]$(_ping) \$ '
 
-get_exit_status(){
-        local ES=$1
-        local GREEN=$'\[\033[1;32m\]'
-        local RED=$'\[\033[1;31m\]'
-        local NONE=$'\[\033[m\]'
-        if [ ${ES} -eq 0 ]; then
-                echo -n "${GREEN}"
-        else
-                echo -n "${RED}"
-        fi
-        echo "${ES}${NONE}"
+_branch_and_exit_status(){
+    local ES=$?
+    echo -n "$(__git_ps1 "(%s) " 2>/dev/null)"
+    return $ES
 }
 
-__prompt_command() {
-        #PS1="[\[\033[00m\]\u@\h\[\033[01;34m\] \W\[\033[31m\]\$(parse_git_branch
-        local ES=$?
-		echo -ne "\a"
-        PS1="\u@\h:\w$(__git_ps1 " (%s)" 2>/dev/null) $(get_exit_status ${ES}) \$ "
+_good_status(){
+    local ES=$?
+    if [ $ES = 0 ]; then
+        echo 0
+    else
+        return $ES
+    fi
 }
 
-export PROMPT_COMMAND=__prompt_command
+_bad_status(){
+    local ES=$?
+    if [ $ES != 0 ]; then
+        echo $ES
+    fi
+}
+
+_ping(){
+    echo -ne "\a"
+}
 
 alias display="display -geometry 1390x1015+2+2"
 alias ccat="pygmentize -g"
