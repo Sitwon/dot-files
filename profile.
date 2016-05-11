@@ -38,7 +38,7 @@ source $HOME/.git-completion.bash
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
 
-export PS1='\u@\h:\w $(_branch_and_exit_status)\! \[\033[1;32m\]$(_good_status)\[\033[1;31m\]$(_bad_status)\[\033[m\]$(_ping) \$ '
+export PS1='\u@\h:\w $(_branch_and_exit_status)\! \[\033[1;32m\]$(_good_status)\[\033[1;31m\]$(_bad_status)\[\033[m\]\[\a\] \$ '
 
 _branch_and_exit_status(){
     local ES=$?
@@ -60,10 +60,6 @@ _bad_status(){
     if [ $ES != 0 ]; then
         echo $ES
     fi
-}
-
-_ping(){
-    echo -ne "\a"
 }
 
 alias display="display -geometry 1390x1015+2+2"
