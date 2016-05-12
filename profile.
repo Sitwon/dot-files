@@ -20,6 +20,7 @@ export GWT_EXTERNAL_BROWSER="firefox"
 
 # Set vim as the default visual editor
 export VISUAL="vim"
+export EDITOR="${VISUAL}"
 
 # If CLASSPATH is not set, set it to "."
 export CLASSPATH=${CLASSPATH:-"."}

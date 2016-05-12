@@ -2,7 +2,7 @@
 colorscheme darkblue
 
 " Smallest fixed-width font that looked comfortable to me
-set guifont=Monospace\ 8
+set guifont=Monospace\ 10
 
 " Sets the default window size (irrelevant if you use a tiling window manager)
 set lines=70

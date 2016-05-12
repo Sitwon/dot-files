@@ -64,3 +64,5 @@ autocmd FileType gitcommit DiffGitCached | wincmd p
 " Draw a red line at column 81
 set colorcolumn=81
 
+filetype plugin on
+syntax on
