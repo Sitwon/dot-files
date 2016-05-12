@@ -31,6 +31,7 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR><Space>
 set rtp+=$GOROOT/misc/vim
 
 " Git-specifc vim configs
+" https://github.com/tpope/vim-git
 set rtp+=~/src/vim-git
 
 " Execute .vimrc configs in the current directory
@@ -58,11 +59,11 @@ nnoremap <C-l> <C-l>l
 " Force save a file that requires root
 cmap w!! %!sudo tee > /dev/null %
 
+filetype plugin on
+syntax on
+
 " Show git diff in window split when committing
 autocmd FileType gitcommit DiffGitCached | wincmd p
 
 " Draw a red line at column 81
 set colorcolumn=81
-
-filetype plugin on
-syntax on
