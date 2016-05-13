@@ -38,7 +38,7 @@ flip_dot() {
 	filedir="$(dirname "$1")"
 	filebase="$(basename "$1")"
 	if [ "${filebase: -1}" = "." ]; then
-		echo "$(flip_dot "${filedir}")/.${filebase:0:-1}"
+		echo "$(flip_dot "${filedir}")/.${filebase:0:${#filebase} - 1}"
 	else
 		echo "$(flip_dot "${filedir}")/${filebase}"
 	fi
@@ -83,7 +83,7 @@ done
 
 templates="$(blacklist_filter $(find * -iname '*.tmpl'))"
 for template in ${templates}; do
-	target_file="${HOME}$(flip_dot "${template:0:-5}")"
+	target_file="${HOME}$(flip_dot "${template:0:${#template} - 5}")"
 	echo "template: ${target_file}"
 	fill_template "${template}" "${target_file}"
 done
