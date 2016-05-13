@@ -1,3 +1,5 @@
+runtime! vimrc_example.vim
+
 " Set the textwidth to 80
 "set tw=80
 
