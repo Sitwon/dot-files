@@ -39,7 +39,7 @@ source $HOME/.git-completion.bash
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
 
-export PS1='\u@\h:\w $(_branch_and_exit_status)\! \[\033[1;32m\]$(_good_status)\[\033[1;31m\]$(_bad_status)\[\033[m\]\[\a\] \$ '
+export PS1='\! \u@\h:\w $(_branch_and_exit_status)\[\033[1;32m\]$(_good_status)\[\033[1;31m\]$(_bad_status)\[\033[m\]\[\a\] \$ '
 
 _branch_and_exit_status(){
     local ES=$?
