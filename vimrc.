@@ -69,3 +69,6 @@ autocmd FileType gitcommit DiffGitCached | wincmd p
 
 " Draw a red line at column 81
 set colorcolumn=81
+
+" Show vim-airline all the time
+set laststatus=2
