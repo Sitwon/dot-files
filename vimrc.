@@ -18,7 +18,9 @@ set sw=4
 set ts=4
 
 " Stash away vim backups
-set backupdir=~/.vimbackup
+set backupdir=~/.vimbackup//
+set undodir=~/.vimundo//
+set directory=~/.vimswap//
 
 " Turn on line numbering
 set nu
