@@ -16,6 +16,7 @@ set list listchars=tab:>-,trail:-
 " Set tab/indent to 4 spaces
 set sw=4
 set ts=4
+set et
 
 " Stash away vim backups
 set backupdir=~/.vimbackup//
