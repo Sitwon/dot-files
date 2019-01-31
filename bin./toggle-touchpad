@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#TOUCHPAD_ENABLED="$(xinput --list-props "AlpsPS/2 ALPS DualPoint TouchPad" | grep "Device Enabled" | awk '{print $4}')"
+#if [ "${TOUCHPAD_ENABLED}" -eq 1 ]; then
+#	xinput --set-prop "AlpsPS/2 ALPS DualPoint TouchPad" "Device Enabled" 0
+#else
+#	xinput --set-prop "AlpsPS/2 ALPS DualPoint TouchPad" "Device Enabled" 1
+#fi
+

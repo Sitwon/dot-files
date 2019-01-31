@@ -1,0 +1,18 @@
+#!/bin/bash
+
+force_monitor_off(){
+	sleep 1
+	xset dpms force off
+}
+
+is_docked(){
+	[ "$(xrandr -q | grep '\<connected\>' | grep -v '\<eDP1\>' | wc -l)" -gt 0 ]
+}
+
+if is_docked; then
+	#loginctl lock-session
+	/usr/bin/slock
+else
+	force_monitor_off &
+	/usr/bin/slock
+fi

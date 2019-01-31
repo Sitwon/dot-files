@@ -1,0 +1,215 @@
+# This configuration uses Mod1 and Mod4. Make sure they are mapped properly using xev(1)
+# and xmodmap(1). Usually, Mod1 is Alt (Alt_L) and Mod4 is Windows (Super_L)
+
+# ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
+# Use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier Mod4
+
+# Fullscreen (Mod4+f)
+bindcode Mod4+41 fullscreen
+
+# Stacking (Mod4+s)
+bindcode Mod4+39 layout stacking
+
+# Tabbed (Mod4+a)
+bindcode Mod4+38 layout tabbed
+
+# Default (Mod4+d)
+bindcode Mod4+40 layout default
+
+# Toggle tiling/floating of the current window (Mod4+Shift+Space)
+bindcode Mod4+Shift+65 floating toggle
+
+# Change focus between tiling / floating windows
+bindcode Mod4+65 focus mode_toggle
+
+# Focus (Mod4+h/j/k/l)
+bindcode Mod4+43 focus left
+bindcode Mod4+44 focus down
+bindcode Mod4+45 focus up
+bindcode Mod4+46 focus right
+# (alternatively, you can use the cursor keys:)
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
+# split in horizontal direction
+bindsym Mod4+i split h
+
+# split in vertical direction
+bindsym Mod4+u split v
+
+# focus the parent container
+bindsym Mod4+p focus parent
+
+# Move (Mod4+Shift+h/j/k/l)
+bindcode Mod4+Shift+43 move left
+bindcode Mod4+Shift+44 move down
+bindcode Mod4+Shift+45 move up
+bindcode Mod4+Shift+46 move right
+# (alternatively, you can use the cursor keys:)
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
+
+# Workspaces (Mod4+1/2/…)
+bindcode Mod4+10 workspace 1
+bindcode Mod4+11 workspace 2
+bindcode Mod4+12 workspace 3
+bindcode Mod4+13 workspace 4
+bindcode Mod4+14 workspace 5
+bindcode Mod4+15 workspace 6
+bindcode Mod4+16 workspace 7
+bindcode Mod4+17 workspace 8
+bindcode Mod4+18 workspace 9
+bindcode Mod4+19 workspace 10
+
+bindsym Mod1+F1 workspace 1
+bindsym Mod1+F2 workspace 2
+bindsym Mod1+F3 workspace 3
+bindsym Mod1+F4 workspace 4
+bindsym Mod1+F5 workspace 5
+bindsym Mod1+F6 workspace 6
+bindsym Mod1+F7 workspace 7
+bindsym Mod1+F8 workspace 8
+bindsym Mod1+F9 workspace 9
+bindsym Mod1+F10 workspace 10
+
+# Move to Workspaces
+bindcode Mod4+Shift+10 move workspace 1
+bindcode Mod4+Shift+11 move workspace 2
+bindcode Mod4+Shift+12 move workspace 3
+bindcode Mod4+Shift+13 move workspace 4
+bindcode Mod4+Shift+14 move workspace 5
+bindcode Mod4+Shift+15 move workspace 6
+bindcode Mod4+Shift+16 move workspace 7
+bindcode Mod4+Shift+17 move workspace 8
+bindcode Mod4+Shift+18 move workspace 9
+bindcode Mod4+Shift+19 move workspace 10
+
+bindsym Mod1+Shift+F1 move workspace 1
+bindsym Mod1+Shift+F2 move workspace 2
+bindsym Mod1+Shift+F3 move workspace 3
+bindsym Mod1+Shift+F4 move workspace 4
+bindsym Mod1+Shift+F5 move workspace 5
+bindsym Mod1+Shift+F6 move workspace 6
+bindsym Mod1+Shift+F7 move workspace 7
+bindsym Mod1+Shift+F8 move workspace 8
+bindsym Mod1+Shift+F9 move workspace 9
+bindsym Mod1+Shift+F10 move workspace 10
+
+# Move Workspaces to different display
+bindcode Mod4+Mod1+43 move workspace to output left
+bindcode Mod4+Mod1+44 move workspace to output down
+bindcode Mod4+Mod1+45 move workspace to output up
+bindcode Mod4+Mod1+46 move workspace to output right
+# (alternatively, you can use the cursor keys:)
+bindsym Mod4+Mod1+Left move workspace to output left
+bindsym Mod4+Mod1+Down move workspace to output down
+bindsym Mod4+Mod1+Up move workspace to output up
+bindsym Mod4+Mod1+Right move workspace to output right
+
+# Mod4+Enter starts a new terminal
+bindcode Mod4+36 exec /usr/bin/urxvt -ls -sl 5000 -tr -sh 50 -bg black -fg grey -fade 50 -tn xterm
+
+# Mod4+Shift+q kills the current client
+bindcode Mod4+Shift+25 kill
+
+# Mod4+r starts dmenu and launches the selected application
+# for now, we don’t have a launcher of our own.
+bindcode Mod4+27 exec /usr/bin/dmenu_run
+
+# Mod4+Shift+e exits i3
+bindcode Mod4+Shift+26 exit
+
+# Mod4+Shift+r restarts i3 inplace
+bindcode Mod4+Shift+27 restart
+
+# Scratchpad
+bindsym Mod4+Shift+grave move scratchpad
+bindsym Mod4+grave scratchpad show
+
+# The IPC interface allows programs like an external workspace bar
+# (i3-wsbar) or i3-msg (can be used to "remote-control" i3) to work.
+ipc-socket ~/.i3/ipc.sock
+
+#############################################################
+# DELETE THE FOLLOWING LINES TO DISABLE THE WELCOME MESSAGE #
+#############################################################
+#exec xmessage -file /etc/i3/welcome
+
+bar {
+  font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso8859-1
+  status_command i3status
+  #mode hide
+  tray_output eDP-1
+}
+
+
+# Special Windows
+for_window [instance="urxvt_scratchpad"] move to scratchpad
+for_window [class="Audacious"] floating enable
+for_window [class="Audacious"] border none
+for_window [class="xmms"] floating enable
+for_window [class="xmms"] border none
+for_window [class="Tilda"] floating enable
+for_window [class="Tilda"] border none
+for_window [class="Xfce4-notifyd"] floating enable
+for_window [class="Xfce4-notifyd"] border none
+for_window [class="rdesktop"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="Gkrellm"] floating enable
+for_window [class="QEMU"] floating enable
+for_window [class="Vncviewer"] floating enable
+for_window [class="feh"] floating enable
+
+# Startup
+#exec --no-startup-id fbsetbg -l
+#exec --no-startup-id feh --bg-center /home/adam/Pictures/dcaptain.jpg
+exec --no-startup-id syndaemon -dtK -i 1
+#exec --no-startup-id bash -c /home/ben/.bin/toggle-touchpad
+exec --no-startup-id redshift-gtk -l 39.0:-77.1
+#exec --no-startup-id tilda
+#exec --no-startup-id wicd-client
+#exec --no-startup-id root-tail -fn -dec-*-*-*-*-*-*-*-*-*-*-*-*-* --outline --noflicker -g 1200x980+10+70 --wordwrap /var/log/secure,grey, /var/log/syslog,blue, /var/log/messages,green,
+#exec --no-startup-id xscreensaver-command -exit && xscreensaver -no-capture-stderr -no-splash
+exec --no-startup-id blueman-applet
+#exec --no-startup-id sudo chmod a+rw /proc/acpi/ibm/light
+exec --no-startup-id urxvt -name urxvt_scratchpad -ls -sl 5000 -tr -sh 50 -bg black -fg grey -fade 50 -tn xterm -e bash -c "while true ; do screen -S scratchpad ; done"
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id nm-applet
+exec --no-startup-id pnmixer
+
+# Control Audacity
+bindsym Mod4+z exec --no-startup-id audtool --playlist-reverse
+bindsym Mod4+x exec audacious --play
+bindsym Mod4+c exec --no-startup-id audtool --playback-playpause
+bindsym Mod4+v exec --no-startup-id audtool --playback-stop
+bindsym Mod4+b exec --no-startup-id audtool --playlist-advance
+
+# App shortcuts
+bindsym Mod4+e exec xfe
+bindsym Mod4+g exec gvim
+bindsym Mod4+w exec google-chrome --allow-outdated-plugins
+#bindsym Mod4+t exec st -f '-*-liberation mono-medium-r-*-*-*-*-*-*-*-*-iso8859-*'
+
+# Special keys
+bindsym XF86TouchpadToggle exec bash -c /home/ben/.bin/toggle-touchpad
+#bindsym XF86Sleep exec --no-startup-id xscreensaver-command -lock && sudo /usr/sbin/pm-suspend
+bindsym XF86Sleep exec --no-startup-id bash -c /home/ben/.bin/do-suspend
+bindsym XF86Suspend exec --no-startup-id slock && sudo systemctl sleep
+#bindsym XF86ScreenSaver exec --no-startup-id xscreensaver-command -lock
+bindsym XF86ScreenSaver exec --no-startup-id loginctl lock-session
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym Print exec --no-startup-id flameshot gui
+
+#bindsym Mod1+Control+l exec loginctl lock-session
+bindsym Mod1+Control+l exec i3lock --color 000000 --ignore-empty-password --show-failed-attempts
+
