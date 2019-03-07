@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+DEV_ADDR="${1:-00_16_94_34_0C_8A}"
+SINK_ID="bluez_sink.${DEV_ADDR}"
+CARD_ID="bluez_card.${DEV_ADDR}"
+
+function current_profile() {
+    pactl list short sinks | grep "$SINK_ID" | cut -f 2 | cut -d '.' -f 3
+}
+
+CURRENT_PROFILE="$(current_profile)"
+
+case "$CURRENT_PROFILE" in
+    "a2dp_sink")
+        PROFILE="headset_head_unit"
+        ;;
+    "headset_head_unit")
+        PROFILE="a2dp_sink"
+        ;;
+    "")
+        echo "Bluetooth device not detected." >&2
+        exit 1
+        ;;
+    *)
+        echo "Unknown current profile: $CURRENT_PROFILE" >&2
+        exit 2
+        ;;
+esac
+
+pactl set-card-profile "$CARD_ID" "$PROFILE"
+

@@ -191,6 +191,7 @@ bindsym Mod4+x exec audacious --play
 bindsym Mod4+c exec --no-startup-id audtool --playback-playpause
 bindsym Mod4+v exec --no-startup-id audtool --playback-stop
 bindsym Mod4+b exec --no-startup-id audtool --playlist-advance
+bindsym Mod4+m exec --no-startup-id bt_profile_swap
 
 # App shortcuts
 bindsym Mod4+e exec xfe
