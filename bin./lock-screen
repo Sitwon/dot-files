@@ -9,10 +9,7 @@ is_docked(){
 	[ "$(xrandr -q | grep '\<connected\>' | grep -v '\<eDP1\>' | wc -l)" -gt 0 ]
 }
 
-if is_docked; then
-	#loginctl lock-session
-	/usr/bin/slock
-else
+if ! is_docked; then
 	force_monitor_off &
-	/usr/bin/slock
 fi
+i3lock --color 000000 --ignore-empty-password --show-failed-attempts

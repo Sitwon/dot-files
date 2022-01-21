@@ -166,24 +166,20 @@ for_window [class="Gkrellm"] floating enable
 for_window [class="QEMU"] floating enable
 for_window [class="Vncviewer"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="Arandr"] floating enable
 
 # Startup
-#exec --no-startup-id fbsetbg -l
-#exec --no-startup-id feh --bg-center /home/adam/Pictures/dcaptain.jpg
+exec --no-startup-id xhost +
 exec --no-startup-id syndaemon -dtK -i 1
-#exec --no-startup-id bash -c /home/ben/.bin/toggle-touchpad
 exec --no-startup-id redshift-gtk -l 39.0:-77.1
-#exec --no-startup-id tilda
-#exec --no-startup-id wicd-client
-#exec --no-startup-id root-tail -fn -dec-*-*-*-*-*-*-*-*-*-*-*-*-* --outline --noflicker -g 1200x980+10+70 --wordwrap /var/log/secure,grey, /var/log/syslog,blue, /var/log/messages,green,
-#exec --no-startup-id xscreensaver-command -exit && xscreensaver -no-capture-stderr -no-splash
 exec --no-startup-id blueman-applet
-#exec --no-startup-id sudo chmod a+rw /proc/acpi/ibm/light
 exec --no-startup-id urxvt -name urxvt_scratchpad -ls -sl 5000 -tr -sh 50 -bg black -fg grey -fade 50 -tn xterm -e bash -c "while true ; do screen -S scratchpad ; done"
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id nm-applet
 exec --no-startup-id pnmixer
+exec --no-startup-id flameshot
+exec --no-startup-id duplicati --no-hosted-server
 
 # Control Audacity
 bindsym Mod4+z exec --no-startup-id audtool --playlist-reverse
@@ -197,20 +193,21 @@ bindsym Mod4+m exec --no-startup-id bt_profile_swap
 bindsym Mod4+e exec xfe
 bindsym Mod4+g exec gvim
 bindsym Mod4+w exec google-chrome --allow-outdated-plugins
-#bindsym Mod4+t exec st -f '-*-liberation mono-medium-r-*-*-*-*-*-*-*-*-iso8859-*'
 
 # Special keys
-bindsym XF86TouchpadToggle exec bash -c /home/ben/.bin/toggle-touchpad
+bindsym XF86TouchpadToggle exec toggle-touchpad
 #bindsym XF86Sleep exec --no-startup-id xscreensaver-command -lock && sudo /usr/sbin/pm-suspend
-bindsym XF86Sleep exec --no-startup-id bash -c /home/ben/.bin/do-suspend
+bindsym XF86Sleep exec --no-startup-id do-suspend
 bindsym XF86Suspend exec --no-startup-id slock && sudo systemctl sleep
 #bindsym XF86ScreenSaver exec --no-startup-id xscreensaver-command -lock
 bindsym XF86ScreenSaver exec --no-startup-id loginctl lock-session
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id set_brightness inc 0.1
+bindsym XF86MonBrightnessDown exec --no-startup-id set_brightness dec 0.1
 bindsym Print exec --no-startup-id flameshot gui
 
-#bindsym Mod1+Control+l exec loginctl lock-session
 bindsym Mod1+Control+l exec i3lock --color 000000 --ignore-empty-password --show-failed-attempts
+bindsym Mod1+Control+s exec do-suspend
 

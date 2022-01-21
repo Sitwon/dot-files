@@ -80,4 +80,4 @@ export PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
 # to override the default binary. Using aliases is a valid alternative.
 export PATH=$HOME/.bin:$PATH
 
-[ -e ~/.profile.local ] && . ~/.profile.local
+if [ -e /home/adam/.nix-profile/etc/profile.d/nix.sh ]; then . /home/adam/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-slock &
-sudo systemctl suspend
+i3lock --color 000000 --ignore-empty-password --show-failed-attempts &
+sudo /bin/systemctl suspend
